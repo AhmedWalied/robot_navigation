@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<robot name="robot_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!--______________________________ include ______________________________-->
+    <xacro:include filename="$(find robot_description)/urdf/robot_essentials.urdf.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/robot_properties.urdf.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/gazebo_essentials.urdf.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/sensors/kinect.urdf.xacro"/>
+
+
+    <!--_____________________________ robot base ____________________________-->
+    <link name='base_link'>
+        <pose>0.00 0.00 ${robot_base_zsize/2} 0.00 0.00</pose>
+        <inertial>
+            <mass value="${robot_base_mass}"/>
+            <xacro:box_inertia mass="${robot_base_mass}" xlen="${robot_base_xsize}" ylen="${robot_base_ysize}" zlen="${robot_base_zsize}"/>
+        </inertial>
+
+        <collision name='collision'>
+            <geometry>
+                <box size="${robot_base_size}"/>
+            </geometry>
+        </collision>
+
+        <visual name='chassis_visual'>
+            <geometry>
+                <box size="${robot_base_size}"/>
+            </geometry>
+        </visual>
+
+        <xacro:robot_caster_wheel prefix="rear_caster"  origin="${rear_caster_origin}"/>
+        <xacro:robot_caster_wheel prefix="front_caster" origin="${front_caster_origin}"/>
+    </link>
+
+    <!--____________________________ robot wheels ___________________________-->
+    <xacro:robot_wheel prefix="left"/>
+    <xacro:robot_wheel prefix="right"/>
+
+    <!--____________________________ robot joints ___________________________-->
+    <xacro:wheel_joint prefix="left"  origin="${left_wheel_origin}"/>
+    <xacro:wheel_joint prefix="right" origin="${right_wheel_origin}"/>
+
+    <!--___________________________ wheel friction __________________________-->
+    <xacro:wheel_properties prefix="left"/>
+    <xacro:wheel_properties prefix="right"/>
+
+    <!--___________________________ attach kinect ___________________________-->
+    <xacro:sensor_kinect parent="base_link"/>
+    <!--_____________________________________________________________________-->
+</robot>

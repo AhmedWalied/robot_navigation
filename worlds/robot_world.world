@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<sdf version="1.4">
+    <!--_________________ We useing a custom world to ensure ________________--> 
+    <!--_______________ the camera angle is launched correctly ______________-->
+    <world name="default">
+        <!--_________________________ ground plane __________________________-->
+        <include>
+            <uri>model://ground_plane</uri>
+        </include>
+
+        <!--______________________ global light source ______________________-->
+        <include>
+            <uri>model://sun</uri>
+        </include>
+
+        <!--_________________ focus camera on tall pendulum _________________-->
+        <gui fullscreen='0'>
+            <camera name='user_camera'>
+                <pose>4.927360 -4.376610 3.740080 0.000000 0.275643 2.356190</pose>
+                <view_controller>orbit</view_controller>
+            </camera>
+        </gui>
+    </world>
+    <!--_____________________________________________________________________-->
+</sdf>

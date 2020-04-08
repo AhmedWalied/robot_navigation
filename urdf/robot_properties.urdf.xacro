@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<robot name="robot_properties" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <!--___________________________ math constant ___________________________-->
+    <xacro:property name="M_PI"                     value="3.14159265359"/>
+
+    <!--________________________ robot base constants _______________________-->
+    <xacro:property name="robot_base_mass"          value="15.0000"/>
+    <xacro:property name="robot_base_xsize"         value="0.60000"/>
+    <xacro:property name="robot_base_ysize"         value="0.35000"/>
+    <xacro:property name="robot_base_zsize"         value="0.05000"/>
+    <xacro:property name="robot_base_size"          value="${robot_base_xsize} ${robot_base_ysize} ${robot_base_zsize}"/>
+
+    <!--_______________________ robot wheels constants ______________________-->
+    <xacro:property name="robot_wheel_mass"         value="2.50000"/>
+    <xacro:property name="robot_wheel_diameter"     value="0.20000"/>
+    <xacro:property name="robot_wheel_height"       value="0.03000"/>
+    <xacro:property name="robot_wheel_seperation"   value="${robot_base_ysize + robot_wheel_height +0.01}"/>
+    <xacro:property name="left_wheel_origin"        value="0.00000  ${robot_wheel_seperation/2} -0.00010"/>
+    <xacro:property name="right_wheel_origin"       value="0.00000 -${robot_wheel_seperation/2} -0.00010"/>
+
+    <!--________________________ robot caster wheels ________________________-->
+    <xacro:property name="robot_caster_mass"        value="0.50000"/>
+    <xacro:property name="robot_caster_diameter"    value="0.10000"/>
+    <xacro:property name="rear_caster_origin"       value="-${(robot_base_xsize/2)-0.10} 0.00000 -0.05000"/>
+    <xacro:property name="front_caster_origin"      value=" ${(robot_base_xsize/2)-0.10} 0.00000 -0.05000"/>
+
+    <!--__________________________ kinect constants _________________________-->
+    <xacro:property name="cam_px"                   value="-0.0870"/>
+    <xacro:property name="kinect_cam_py"            value="-0.0125"/>
+	<xacro:property name="cam_pz"                   value="0.28700"/>
+	<xacro:property name="cam_or"                   value="0.00000"/>
+	<xacro:property name="cam_op"                   value="0.00000"/>
+	<xacro:property name="cam_oy"                   value="0.00000"/>
+
+    <!--_______________________ robot wheels constants ______________________-->
+
+
+    <!--_____________________________________________________________________-->
+</robot>

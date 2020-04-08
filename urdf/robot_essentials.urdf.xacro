@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<robot name="robot_essentials" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!--__________________________ cylinder inertia _________________________-->
+    <xacro:macro name="cylinder_inertia" params="mass radius height">
+        <inertia  
+            ixx="${mass * (3 * radius*radius + height*height)/12}" ixy = "0" ixz = "0"
+            iyy="${mass * (3 * radius*radius + height*height)/12}" iyz = "0"
+            izz="${mass * radius*radius/2}"/>
+    </xacro:macro>
+    
+    <!--_____________________________ box inertia ___________________________-->
+    <xacro:macro name="box_inertia" params="mass xlen ylen zlen">
+        <inertia  
+            ixx="${mass * (ylen*ylen + zlen*zlen)/12}" ixy = "0" ixz = "0"
+            iyy="${mass * (xlen*xlen + zlen*zlen)/12}" iyz = "0"
+            izz="${mass * (xlen*xlen + zlen*zlen)/12}"/>
+    </xacro:macro>
+
+    <!--___________________________ sphere inertia __________________________-->
+    <xacro:macro name="sphere_inertia" params="mass radius">
+        <inertia  
+            ixx="${2 * mass * radius*radius/5}" ixy = "0" ixz = "0"
+            iyy="${2 * mass * radius*radius/5}" iyz = "0"
+            izz="${2 * mass * radius*radius/5}"/>
+    </xacro:macro>
+
+    <!--_________________________ caster wheel link _________________________-->
+    <xacro:macro name="robot_caster_wheel" params="prefix origin">
+        <collision name="${prefix}_caster_collision">
+            <origin xyz="${origin}" rpy=" 0.00 0.00 0.00"/>
+            <geometry>
+                <sphere radius="${robot_caster_diameter/2}"/>
+            </geometry>
+
+            <surface>
+                <friction>
+                    <ode>
+                        <mu>0</mu>
+                        <mu2>0</mu2>
+                        <slip1>1.0</slip1>
+                        <slip2>1.0</slip2>
+                    </ode>
+                </friction>
+            </surface>
+        </collision>
+
+        <visual name="${prefix}_caster_visual">
+            <origin xyz="${origin}" rpy=" 0.00 0.00 0.00"/>
+            <geometry>
+                <sphere radius="${robot_caster_diameter/2}"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+    </xacro:macro>
+    <!--_____________________________ wheel link ____________________________-->
+    <xacro:macro name="robot_wheel" params="prefix">
+        <link name="${prefix}_wheel">
+            <inertial>
+                <mass value="${robot_wheel_mass}"/>
+                <xacro:cylinder_inertia mass="${robot_wheel_mass}" radius="${robot_wheel_diameter/2}" height="${robot_wheel_height}"/>
+            </inertial>
+
+            <visual>
+                <origin xyz="0.00 0.00 0.00" rpy="${M_PI/2} 0.00 0.00"/>
+                
+                <geometry>
+                    <cylinder radius="${robot_wheel_diameter/2}" length="${robot_wheel_height}"/>
+                </geometry>
+
+                <material name="">
+                    <color rgba="0.0 0.0 0.0 1.0"/>
+                </material>
+            </visual>
+
+            <collision>
+                <origin xyz="0.00 0.00 0.00" rpy="${M_PI/2} 0.0 0.0"/>
+                
+                <geometry>
+                    <cylinder radius="${robot_wheel_diameter/2}" length="${robot_wheel_height}"/>
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+
+    <!--_____________________________ wheel joint ___________________________-->
+    <xacro:macro name="wheel_joint" params="prefix origin">
+        <joint name="${prefix}_wheel_joint" type="continuous">
+            <axis xyz="0 1 0"/>
+            <parent link="base_link"/>
+            <child link="${prefix}_wheel"/>
+            <origin xyz="${origin}" rpy="0.00 0.00 0.00"/>
+        </joint>
+    </xacro:macro>
+    <!--_________________________ wheel transmission ________________________-->
+
+
+    <!--_____________________________________________________________________-->
+</robot>
