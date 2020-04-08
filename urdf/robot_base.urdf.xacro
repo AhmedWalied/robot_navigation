@@ -2,10 +2,10 @@
 
 <robot name="robot_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <!--______________________________ include ______________________________-->
-    <xacro:include filename="$(find robot_description)/urdf/robot_essentials.urdf.xacro"/>
-    <xacro:include filename="$(find robot_description)/urdf/robot_properties.urdf.xacro"/>
-    <xacro:include filename="$(find robot_description)/urdf/gazebo_essentials.urdf.xacro"/>
-    <xacro:include filename="$(find robot_description)/urdf/sensors/kinect.urdf.xacro"/>
+    <xacro:include filename="$(find robot_navigation)/urdf/robot_essentials.urdf.xacro"/>
+    <xacro:include filename="$(find robot_navigation)/urdf/robot_properties.urdf.xacro"/>
+    <xacro:include filename="$(find robot_navigation)/urdf/gazebo_essentials.urdf.xacro"/>
+    <xacro:include filename="$(find robot_navigation)/urdf/sensors/kinect.urdf.xacro"/>
 
 
     <!--_____________________________ robot base ____________________________-->

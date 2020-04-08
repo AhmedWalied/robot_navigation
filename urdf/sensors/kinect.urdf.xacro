@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <robot name="sensor_kinect" xmlns:xacro="http://ros.org/wiki/xacro">
-    <!--xacro:include filename="$(find robot_description)/urdf/turtlebot_gazebo.urdf.xacro"/-->
-    <xacro:include filename="$(find robot_description)/urdf/robot_properties.urdf.xacro"/>
+    <!--xacro:include filename="$(find robot_navigation)/urdf/turtlebot_gazebo.urdf.xacro"/-->
+    <xacro:include filename="$(find robot_navigation)/urdf/robot_properties.urdf.xacro"/>
 
     
     <!-- Parameterised in part by the values in turtlebot_properties.urdf.xacro -->
@@ -30,7 +30,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 ${M_PI/2}"/>
                 <geometry>
-                    <mesh filename="package://robot_description/meshes/sensors/kinect.dae"/>
+                    <mesh filename="package://robot_navigation/meshes/sensors/kinect.dae"/>
                 </geometry>
             </visual>
 
