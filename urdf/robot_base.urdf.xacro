@@ -5,7 +5,7 @@
     <xacro:include filename="$(find robot_navigation)/urdf/robot_essentials.urdf.xacro"/>
     <xacro:include filename="$(find robot_navigation)/urdf/robot_properties.urdf.xacro"/>
     <xacro:include filename="$(find robot_navigation)/urdf/gazebo_essentials.urdf.xacro"/>
-    <xacro:include filename="$(find robot_navigation)/urdf/sensors/kinect.urdf.xacro"/>
+    <xacro:include filename="$(find robot_navigation)/urdf/sensors/kinect_base.urdf.xacro"/>
 
 
     <!--_____________________________ robot base ____________________________-->

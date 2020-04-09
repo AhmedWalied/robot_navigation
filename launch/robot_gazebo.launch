@@ -35,7 +35,12 @@
 
     <!--________________________________ RViz _______________________________-->
     <arg name="rviz" default="true"/>
-    <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"/>
+    <arg name="rviz_start_delay" default="10.0" />  
+
+    <node if="$(arg rviz)" 
+        name="rviz" pkg="rviz" type="rviz" 
+        args="-d $(find robot_navigation)/rviz/config_file.rviz"
+        launch-prefix="bash -c 'sleep $(arg rviz_start_delay); $0 $@' "/>
 
     <!--_____________________________________________________________________-->
 </launch>

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 
 <robot name="sensor_kinect" xmlns:xacro="http://ros.org/wiki/xacro">
-    <!--xacro:include filename="$(find robot_navigation)/urdf/turtlebot_gazebo.urdf.xacro"/-->
+    <xacro:include filename="$(find robot_navigation)/urdf/sensors/kinect_gazebo.urdf.xacro"/>
     <xacro:include filename="$(find robot_navigation)/urdf/robot_properties.urdf.xacro"/>
 
-    
-    <!-- Parameterised in part by the values in turtlebot_properties.urdf.xacro -->
+    <!--_______________ Parameters in this part is defined by _______________--> 
+    <!--_____________ the values in robot_properties.urdf.xacro _____________-->
     <xacro:macro name="sensor_kinect" params="parent">
         <joint name="camera_rgb_joint" type="fixed">
-            <origin xyz="${cam_px} ${kinect_cam_py} ${cam_pz}" rpy="${cam_or} ${cam_op} ${cam_oy}"/>
+            <origin xyz="${cam_px} ${cam_py} ${cam_pz}" rpy="${cam_or} ${cam_op} ${cam_oy}"/>
             <parent link="${parent}"/>
             <child link="camera_rgb_frame" />
         </joint>
@@ -22,7 +22,7 @@
         <link name="camera_rgb_optical_frame"/>
 
         <joint name="camera_joint" type="fixed">
-            <origin xyz="-0.031 ${-kinect_cam_py} -0.016" rpy="0 0 0"/>
+            <origin xyz="-0.031 ${-cam_py} -0.016" rpy="0 0 0"/>
             <parent link="camera_rgb_frame"/>
             <child link="camera_link"/>
         </joint>  
@@ -51,11 +51,8 @@
             </inertial>
         </link>
 
-        <!-- The fixed joints & links below are usually published by static_transformers launched by the OpenNi launch 
-        files. However, for Gazebo simulation we need them, so we add them here.
-        (Hence, don't publish them additionally!) -->
         <joint name="camera_depth_joint" type="fixed">
-            <origin xyz="0 ${2 * -kinect_cam_py} 0" rpy="0 0 0" />
+            <origin xyz="0 ${2 * -cam_py} 0" rpy="0 0 0" />
             <parent link="camera_rgb_frame" />
             <child link="camera_depth_frame" />
         </joint>
@@ -68,7 +65,7 @@
         </joint>
         <link name="camera_depth_optical_frame"/>
 
-        <!-- Kinect sensor for simulation -->
-        <!--xacro:turtlebot_sim_3dsensor/-->
+        <!--__________________ Kinect sensor for simulation _________________-->
+        <xacro:simulate_depthSensor/>
     </xacro:macro>
 </robot>

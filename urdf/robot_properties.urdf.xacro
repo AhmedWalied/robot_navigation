@@ -27,9 +27,9 @@
     <xacro:property name="front_caster_origin"      value=" ${(robot_base_xsize/2)-0.10} 0.00000 -0.05000"/>
 
     <!--__________________________ kinect constants _________________________-->
-    <xacro:property name="cam_px"                   value="-0.0870"/>
-    <xacro:property name="kinect_cam_py"            value="-0.0125"/>
-	<xacro:property name="cam_pz"                   value="0.28700"/>
+    <xacro:property name="cam_px"                   value="0.25000"/>
+    <xacro:property name="cam_py"                   value="0.00000"/>
+	<xacro:property name="cam_pz"                   value="0.07600"/>
 	<xacro:property name="cam_or"                   value="0.00000"/>
 	<xacro:property name="cam_op"                   value="0.00000"/>
 	<xacro:property name="cam_oy"                   value="0.00000"/>
