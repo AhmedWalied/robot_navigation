@@ -66,6 +66,6 @@
         <link name="camera_depth_optical_frame"/>
 
         <!--__________________ Kinect sensor for simulation _________________-->
-        <!--xacro:simulate_depthSensor/-->
+        <xacro:simulate_depthSensor/>
     </xacro:macro>
 </robot>
