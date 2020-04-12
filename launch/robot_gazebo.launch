@@ -2,12 +2,21 @@
 
 <launch>
     <!--______________________ define gazebo parameters _____________________--> 
-    <arg name="world" default="empty"/> 
-    <arg name="paused" default="false"/>
-    <arg name="use_sim_time" default="true"/>
-    <arg name="gui" default="true"/>
-    <arg name="headless" default="false"/>
-    <arg name="debug" default="false"/>
+    <arg name="world"           default="empty"/> 
+    <arg name="paused"          default="false"/>
+    <arg name="use_sim_time"    default="true"/>
+    <arg name="gui"             default="true"/>
+    <arg name="headless"        default="false"/>
+    <arg name="debug"           default="false"/>
+
+    <!--_____________________________ Robot pose ____________________________-->
+    <arg name="x"               default="-9.0000"/>
+    <arg name="y"               default="-14.000"/>
+    <arg name="z"               default="0.00000"/>
+    <arg name="roll"            default="0.00000"/>
+    <arg name="pitch"           default="0.00000"/>
+    <arg name="yaw"             default="0.00000"/>
+
 
     <!--__________________ Start gazebo and load the world __________________-->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -23,7 +32,9 @@
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robot_navigation)/urdf/robot_base.urdf.xacro'"/> 
     
     <node name="urdf_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-        args="-urdf -param robot_description -model robot_base" />
+        args="-urdf -param robot_description -model robot_base 
+              -x $(arg x)    -y $(arg y)     -z $(arg z)
+              -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
 
     <!--_______________________ send fake joint values _______________________-->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
@@ -34,7 +45,7 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
     <!--________________________________ RViz _______________________________-->
-    <arg name="rviz" default="true"/>
+    <arg name="rviz" default="false"/>
     <arg name="rviz_start_delay" default="10.0" />  
 
     <node if="$(arg rviz)" 
